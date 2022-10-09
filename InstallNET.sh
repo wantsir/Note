@@ -36,7 +36,7 @@ export GRUBDIR=''
 export GRUBFILE=''
 export GRUBVER=''
 export VER=''
-export setCMD=''
+export setCMD='ZWNobyAibmV0LmNvcmUuZGVmYXVsdF9xZGlzYyA9IGZxIiA+PiAvZXRjL3N5c2N0bC5jb25mJiZlY2hvICJuZXQuaXB2NC50Y3BfY29uZ2VzdGlvbl9jb250cm9sID0gYmJyIiA+PiAvZXRjL3N5c2N0bC5jb25mJiZzeXNjdGwgLXA='
 export setConsole=''
 
 while [[ $# -ge 1 ]]; do
@@ -552,7 +552,7 @@ if [[ "$loaderMode" == "0" ]]; then
   [[ "$setInterfaceName" == "1" ]] && Add_OPTION="net.ifnames=0 biosdevname=0" || Add_OPTION=""
   [[ "$setIPv6" == "1" ]] && Add_OPTION="$Add_OPTION ipv6.disable=1"
   
-  lowMem || Add_OPTION="$Add_OPTION lowmem=+2"
+  lowMem || Add_OPTION="$Add_OPTION lowmem=+0"
 
   if [[ "$linux_relese" == 'debian' ]] || [[ "$linux_relese" == 'ubuntu' ]]; then
     BOOT_OPTION="auto=true $Add_OPTION hostname=$linux_relese domain=$linux_relese quiet"
@@ -661,6 +661,7 @@ cp -f '/net.bat' './net.bat'; \
 /sbin/reboot; \
 umount /media || true; \
 
+d-i partman-basicfilesystems/no_swap boolean false
 d-i partman-partitioning/confirm_write_new_label boolean true
 d-i partman/mount_style select uuid
 d-i partman/choose_partition select finish
