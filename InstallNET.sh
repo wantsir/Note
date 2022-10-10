@@ -649,7 +649,6 @@ d-i user-setup/encrypt-home boolean false
 d-i clock-setup/utc boolean true
 d-i time/zone string US/Eastern
 d-i clock-setup/ntp boolean false
-d-i partman-basicfilesystems/no_swap boolean false
 
 d-i preseed/early_command string anna-install libfuse2-udeb fuse-udeb ntfs-3g-udeb libcrypto1.1-udeb libpcre2-8-0-udeb libssl1.1-udeb libuuid1-udeb zlib1g-udeb wget-udeb
 d-i partman/early_command string [[ -n "\$(blkid -t TYPE='vfat' -o device)" ]] && umount "\$(blkid -t TYPE='vfat' -o device)"; \
@@ -668,6 +667,7 @@ d-i partman/choose_partition select finish
 d-i partman-auto/method string regular
 d-i partman-auto/init_automatically_partition select Guided - use entire disk
 d-i partman-auto/choose_recipe select All files in one partition (recommended for new users)
+d-i partman-basicfilesystems/no_swap boolean false
 d-i partman-md/device_remove_md boolean true
 d-i partman-lvm/device_remove_lvm boolean true
 d-i partman-lvm/confirm boolean true
