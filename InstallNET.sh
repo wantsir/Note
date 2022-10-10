@@ -36,7 +36,7 @@ export GRUBDIR=''
 export GRUBFILE=''
 export GRUBVER=''
 export VER=''
-export setCMD='ZWNobyAibmV0LmNvcmUuZGVmYXVsdF9xZGlzYyA9IGZxIiA+PiAvZXRjL3N5c2N0bC5jb25mJiZlY2hvICJuZXQuaXB2NC50Y3BfY29uZ2VzdGlvbl9jb250cm9sID0gYmJyIiA+PiAvZXRjL3N5c2N0bC5jb25mJiZzeXNjdGwgLXA='
+export setCMD=''
 export setConsole=''
 
 while [[ $# -ge 1 ]]; do
@@ -661,13 +661,13 @@ cp -f '/net.bat' './net.bat'; \
 /sbin/reboot; \
 umount /media || true; \
 
+d-i partman-auto/choose_recipe select All files in one partition (recommended for new users)
+d-i partman-basicfilesystems/no_swap boolean false
 d-i partman-partitioning/confirm_write_new_label boolean true
 d-i partman/mount_style select uuid
 d-i partman/choose_partition select finish
 d-i partman-auto/method string regular
 d-i partman-auto/init_automatically_partition select Guided - use entire disk
-d-i partman-auto/choose_recipe select All files in one partition (recommended for new users)
-d-i partman-basicfilesystems/no_swap boolean false
 d-i partman-md/device_remove_md boolean true
 d-i partman-lvm/device_remove_lvm boolean true
 d-i partman-lvm/confirm boolean true
